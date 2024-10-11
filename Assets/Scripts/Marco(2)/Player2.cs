@@ -22,17 +22,14 @@ public class Player2 : BasePlayerController, IAimable, IMoveable, IAttackable
     protected override void Awake()
     {
         base.Awake();
-
         movement = GetComponent<Movement3D>();
         attack = GetComponent<ExplosionAttack>();
-
         Debug.Log("Player2 Awake");
     }
 
     protected override void Start()
     {
         base.Start();
-
         Debug.Log("Player2 Start");
     }
 
@@ -50,14 +47,18 @@ public class Player2 : BasePlayerController, IAimable, IMoveable, IAttackable
 
     private void Update()
     {
-        Vector2 inputDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        Move(inputDirection);
+        if (Input.GetMouseButton(1)) 
+        {
+            Vector2 inputDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            Move(inputDirection);
+        }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)) 
         {
             Vector2 mousePosition = Input.mousePosition;
             Attack(mousePosition);
         }
     }
 }
+
 

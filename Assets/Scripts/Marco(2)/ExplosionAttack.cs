@@ -6,6 +6,7 @@ public class ExplosionAttack : MonoBehaviour, IAttack
 {
     public GameObject explosionPrefab;
     public Camera mainCamera;
+    public float explosionLifetime = 2f; 
 
     public void Attack(Vector2 mousePosition)
     {
@@ -14,7 +15,9 @@ public class ExplosionAttack : MonoBehaviour, IAttack
 
         if (Physics.Raycast(ray, out hit))
         {
-            Instantiate(explosionPrefab, hit.point, Quaternion.identity);
+            GameObject explosion = Instantiate(explosionPrefab, hit.point, Quaternion.identity);
+            Destroy(explosion, explosionLifetime); 
         }
     }
 }
+
